@@ -1,0 +1,34 @@
+meta {
+  name: Create Order
+  type: grpc
+  seq: 1
+}
+
+grpc {
+  url: {{grpc_addr}}
+  method: /orders.v1.OrdersService/CreateOrder
+  body: grpc
+  protoPath: ../proto/orders_service.proto
+  auth: inherit
+  methodType: unary
+}
+
+body:grpc {
+  name: message 1
+  content: '''
+    {
+      "customer_id": "{{customer_id}}",
+      "items": [
+        {
+          "sku": "SKU-1-gRPC",
+          "quantity": 2,
+          "unit_price": {
+            "currency": "BRL",
+            "units": 1990,
+            "scale": 2
+          }
+        }
+      ]
+    }
+  '''
+}

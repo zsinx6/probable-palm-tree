@@ -1,0 +1,21 @@
+meta {
+  name: Get Order
+  type: grpc
+  seq: 2
+}
+
+grpc {
+  url: {{grpc_addr}}
+  method: /orders.v1.OrdersService/GetOrder
+  body: grpc
+  protoPath: ../proto/orders_service.proto
+  auth: inherit
+  methodType: unary
+}
+
+body:grpc {
+  name: message 1
+  content: '''
+    { "order_id": "ab447354-d451-4563-bc37-1817a7a18482" }
+  '''
+}

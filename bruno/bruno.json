@@ -1,0 +1,29 @@
+{
+  "version": "1",
+  "name": "bruno",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ],
+  "size": 0.0013113021850585938,
+  "filesCount": 4,
+  "protobuf": {
+    "protoFiles": [
+      {
+        "path": "../proto/orders_service.proto",
+        "type": "file"
+      },
+      {
+        "path": "../proto/orders_types.proto",
+        "type": "file"
+      }
+    ],
+    "importPaths": [
+      {
+        "path": "../proto",
+        "enabled": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+meta {
+  name: List Orders by Customer
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{base_url}}/orders?customer_id={{customer_id}}
+  body: none
+  auth: inherit
+}
+
+params:query {
+  customer_id: {{customer_id}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

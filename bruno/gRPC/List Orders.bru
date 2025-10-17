@@ -1,0 +1,23 @@
+meta {
+  name: List Orders
+  type: grpc
+  seq: 3
+}
+
+grpc {
+  url: {{grpc_addr}}
+  method: /orders.v1.OrdersService/ListOrders
+  body: grpc
+  protoPath: ../proto/orders_service.proto
+  auth: inherit
+  methodType: server-streaming
+}
+
+body:grpc {
+  name: message 1
+  content: '''
+    {
+      "customer_id": "{{customer_id}}"
+    }
+  '''
+}

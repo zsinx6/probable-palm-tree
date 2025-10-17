@@ -1,0 +1,33 @@
+meta {
+  name: Create Order A
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/orders
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "customer_id": "{{customer_id}}",
+    "items": [
+      {
+        "sku": "SKU-1-REST",
+        "quantity": 2,
+        "unit_price": {
+          "currency": "BRL",
+          "units": 1990,
+          "scale": 2
+        }
+      }
+    ]
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
