@@ -6,6 +6,7 @@ from pydantic import BaseModel, ConfigDict
 
 P = TypeVar("P")
 
+
 class ProtoModel(BaseModel, Generic[P], ABC):
     model_config = ConfigDict(extra="forbid")
 

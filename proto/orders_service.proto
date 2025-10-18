@@ -8,6 +8,5 @@ service OrdersService {
   rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse);
   rpc GetOrder(GetOrderRequest) returns (Order);
   rpc ListOrders(ListOrdersRequest) returns (stream Order);
-  rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse);
 }
 

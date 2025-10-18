@@ -5,7 +5,14 @@ PROTO_FILES := \
   $(PROTO_DIR)/orders_types.proto \
   $(PROTO_DIR)/orders_service.proto
 
-.PHONY: proto clean
+.PHONY: proto clean slide format
+
+format:
+	uv run ruff format .
+	uv run ruff check . --fix
+
+slide:
+	typst compile slides.typ
 
 proto:
 	@mkdir -p $(OUT_DIR)

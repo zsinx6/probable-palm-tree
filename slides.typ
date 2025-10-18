@@ -45,9 +45,9 @@
 #slide(
   "gRPC + Protobuf + HTTP/2 com Python",
   [
-    - objetivos
-    - decisões arquiteturais
-    - tecnologias: HTTP/2, Protobuf, gRPC (async), Pydantic v2, FastAPI
+    - Objetivos
+    - Decisões arquiteturais
+    - Tecnologias: HTTP/2, Protobuf, gRPC (async), Pydantic v2, FastAPI
   ]
 )
 
@@ -55,31 +55,29 @@
   "Motivação",
   [
     - REST no backend interno: overhead/latência com JSON e HTTP/1.1
-    - precisamos de streaming nativo e contratos estáveis
-    - interoperabilidade entre linguagens/stack
-    - padrão: REST na borda; gRPC na comunicação entre serviços
+    - Streaming nativo e contratos estáveis
+    - Interoperabilidade entre linguagens/stack
+    - Padrão: REST para o externo; gRPC na comunicação entre serviços
   ]
 )
 
 #slide(
   "HTTP/2",
   [
-    - uma conexão, múltiplos streams (multiplexação de requisições)
-    - elimina HOL no nível HTTP (ainda existe no TCP)
-    - controle de fluxo por conexão e por stream (WINDOW_UPDATE)
-    - cabeçalhos comprimidos (HPACK); trailers para status/metadata
+    - Uma conexão, múltiplos streams (multiplexação de requisições)
+    - Controle de fluxo por conexão e por stream (WINDOW_UPDATE)
+    - Cabeçalhos comprimidos (HPACK); trailers para status/metadata
     - ALPN negocia `h2` (TLS na prática); `h2c` útil em dev interno
-    - server push não é utilizado pelo gRPC; ping/keepalive e GOAWAY
+    - Server push não é utilizado pelo gRPC
   ]
 )
 
 #slide(
   "Protobuf",
   [
-    - serialização binária compacta e rápida
-    - campos numerados (wire types) com evolução compatível
+    - Serialização binária compacta e rápida
+    - Campos numerados (wire types) com evolução compatível
     - optional / oneof / repeated / map
-    - valores monetários sem float (inteiro + escala)
   ]
 )
 
@@ -98,7 +96,7 @@
   [
     - `ProtoModel`: to_proto / from_proto (mapeamento explícito)
     - `extra: "forbid"` (hardening de esquema)
-    - FastAPI como fachada: /health e /orders
+    - FastAPI como fachada: /orders
     - adapters finos; gRPC interno para baixa latência e streaming
   ]
 )
@@ -106,11 +104,11 @@
 #slide(
   "Demo",
   [
-    - subir: `docker compose up`
-    - REST: criar/listar (curl)
-    - gRPC: health/create/list (grpcurl)
+    - Subir: `docker compose up`
+    - REST: criar/listar
+    - gRPC: create/list
     - Bruno: coleções REST e gRPC com `.proto`
-    - disponível em `https://github.com/zsinx6/probable-palm-tree`
+    - Disponível em: `https://github.com/zsinx6/probable-palm-tree`
   ]
 )
 
@@ -124,7 +122,6 @@
       - renumerar campos no `.proto`
       - misturar regra de negócio nos adapters
       - buffers gigantes em streams (*don’t buffer the world*)
-      - depender de `PYTHONPATH` em vez de empacotar `generated/`
   ]
 )
 

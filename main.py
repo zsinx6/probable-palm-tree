@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import asyncio
 import uvicorn
 from contextlib import asynccontextmanager
 
@@ -10,11 +9,13 @@ from app.adapters.grpc_server import start_grpc_server
 
 svc = OrdersService()
 
+
 @asynccontextmanager
 async def lifespan(app_):
     app_.state.grpc_server = await start_grpc_server(svc, port=50051)
     yield
     await app_.state.grpc_server.stop(grace=None)
+
 
 app.router.lifespan_context = lifespan
 mount_routes(app, svc)

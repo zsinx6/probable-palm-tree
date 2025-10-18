@@ -6,8 +6,9 @@ from httpx import AsyncClient, ASGITransport
 from app.adapters.rest_api import mount_routes
 from app.services.orders_service import OrdersService
 
+
 @pytest.mark.asyncio
-async def test_rest_create_order_and_health():
+async def test_rest_create_order():
     svc = OrdersService()
     app = FastAPI()
     mount_routes(app, svc)
@@ -15,14 +16,15 @@ async def test_rest_create_order_and_health():
     transport = ASGITransport(app=app)
     try:
         async with AsyncClient(transport=transport, base_url="http://test") as ac:
-            r = await ac.get("/health")
-            assert r.status_code == 200
-            assert r.json()["status"] == "ok"
-
             payload = {
                 "customer_id": "C3",
-                "items": [{"sku": "ABC", "quantity": 1,
-                           "unit_price": {"currency": "BRL", "units": 2500, "scale": 2}}],
+                "items": [
+                    {
+                        "sku": "ABC",
+                        "quantity": 1,
+                        "unit_price": {"currency": "BRL", "units": 2500, "scale": 2},
+                    }
+                ],
             }
             r = await ac.post("/orders", json=payload)
             assert r.status_code == 200

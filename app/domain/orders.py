@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import List, Self
+from typing import Self
 from pydantic import Field
 
 from app.domain.base import ProtoModel
@@ -9,6 +9,7 @@ from generated.orders_types_pb2 import (
     OrderItem as PbOrderItem,
     Order as PbOrder,
 )
+
 
 class Money(ProtoModel[PbMoney]):
     currency: str = Field(description="Código da moeda (ex.: 'BRL').")
@@ -47,7 +48,7 @@ class OrderItem(ProtoModel[PbOrderItem]):
 class Order(ProtoModel[PbOrder]):
     order_id: str
     customer_id: str
-    items: List[OrderItem]
+    items: list[OrderItem]
     total: Money
     status: str = "CREATED"
 

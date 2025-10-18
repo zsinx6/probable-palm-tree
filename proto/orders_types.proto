@@ -38,6 +38,3 @@ message Order {
 message ListOrdersRequest {
   string customer_id = 1;
 }
-
-message HealthCheckRequest {}
-message HealthCheckResponse { string status = 1; }
