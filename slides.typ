@@ -1,5 +1,5 @@
 // Base (16:9)
-#set page(width: 1280pt, height: 720pt, margin: 56pt)
+#set page(width: 1024pt, height: 640pt, margin: 56pt)
 #set text(size: 30pt)
 #set heading(numbering: none)
 #let gap = 18pt
@@ -65,10 +65,8 @@
   "HTTP/2",
   [
     - Uma conexão, múltiplos streams (multiplexação de requisições)
-    - Controle de fluxo por conexão e por stream (WINDOW_UPDATE)
+    - Controle de fluxo por conexão e por stream
     - Cabeçalhos comprimidos (HPACK); trailers para status/metadata
-    - ALPN negocia `h2` (TLS na prática); `h2c` útil em dev interno
-    - Server push não é utilizado pelo gRPC
   ]
 )
 
@@ -97,7 +95,7 @@
     - `ProtoModel`: to_proto / from_proto (mapeamento explícito)
     - `extra: "forbid"` (hardening de esquema)
     - FastAPI como fachada: /orders
-    - adapters finos; gRPC interno para baixa latência e streaming
+    - adapters individualizados; gRPC interno para baixa latência e streaming
   ]
 )
 
@@ -115,13 +113,13 @@
 #slide(
   "Boas práticas & Pitfalls",
   [
-    - boas práticas:
-      - versionar serviço (`orders.v1` `->` `v2`) e manter tipos compatíveis
-      - testes de contrato (Pydantic `<->` Protobuf) e E2E gRPC
-    - evitar / pitfalls:
-      - renumerar campos no `.proto`
-      - misturar regra de negócio nos adapters
-      - buffers gigantes em streams (*don’t buffer the world*)
+    - Boas práticas:
+      - Versionar serviço (`orders.v1` `->` `v2`) e manter tipos compatíveis
+      - Festes de contrato (Pydantic `<->` Protobuf) e E2E gRPC
+    - Evitar:
+      - Renumerar campos no `.proto`
+      - Misturar regra de negócio nos adapters
+      - Buffers gigantes em streams (*don’t buffer the world*)
   ]
 )
 
