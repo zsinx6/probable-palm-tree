@@ -45,8 +45,8 @@
 #slide(
   "gRPC + Protobuf + HTTP/2 com Python",
   [
+    - Motivação
     - Objetivos
-    - Decisões arquiteturais
     - Tecnologias: HTTP/2, Protobuf, gRPC (async), Pydantic v2, FastAPI
   ]
 )
@@ -83,9 +83,9 @@
   "gRPC (async)",
   [
     - RPCs: unary, server-streaming, client-streaming, bidi
-    - deadlines, cancelamento; status codes + trailers
-    - limites/compactação de mensagens
-    - server-streaming eficiente com `grpc.aio`/asyncio
+    - Deadlines, cancelamento; status codes + trailers
+    - Limites/compactação de mensagens
+    - Server-streaming eficiente com `grpc.aio`/asyncio
   ]
 )
 
@@ -95,7 +95,7 @@
     - `ProtoModel`: to_proto / from_proto (mapeamento explícito)
     - `extra: "forbid"` (hardening de esquema)
     - FastAPI como fachada: /orders
-    - adapters individualizados; gRPC interno para baixa latência e streaming
+    - Adapters individualizados; gRPC interno para baixa latência e streaming
   ]
 )
 
@@ -115,7 +115,7 @@
   [
     - Boas práticas:
       - Versionar serviço (`orders.v1` `->` `v2`) e manter tipos compatíveis
-      - Festes de contrato (Pydantic `<->` Protobuf) e E2E gRPC
+      - Testes de contrato (Pydantic `<->` Protobuf) e E2E gRPC
     - Evitar:
       - Renumerar campos no `.proto`
       - Misturar regra de negócio nos adapters
